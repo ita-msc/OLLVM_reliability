@@ -43,5 +43,9 @@ clang++ -O0 ./benchmark_samples/revcomp.cpp -o ./benchmark_samples_compiled/revc
 clang++ -O0 ./benchmark_samples/revcomp.cpp -o ./benchmark_samples_compiled/revcomp.o0.fla.sub.bfc -mllvm -fla -mllvm -bcf -mllvm -sub
 echo "compiled 8/10"
 
+clang++ -I/usr/include/re2 -O0 ./benchmark_samples/regexdna.cpp -o ./benchmark_samples_compiled/regexdna.o0 -L/usr/include/re2 -lre2 -Xlinker -rpath=/usr/include/re2
+clang++ -I/usr/include/re2 -O0 ./benchmark_samples/regexdna.cpp -o ./benchmark_samples_compiled/regexdna.o0.fla.sub.bcf -L/usr/include/re2 -lre2 -Xlinker -rpath=/usr/include/re2 -mllvm -fla -mllvm -sub -mllvm -bcf
+echo "compiled 9/10"
+
 
 echo "Done. A benchmark_samples_compiled directory has just been created. Check it out! "
