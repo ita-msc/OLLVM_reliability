@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "compiling..."
+echo "PHASE ONE -------> Compiling..."
 
 
 mkdir benchmark_samples_compiled
@@ -53,4 +53,8 @@ clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samp
 clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samples_compiled/knucleotide.o0.fla.sub.bcf -L/opt/boost/stage/lib -lpthread -Xlinker -rpath=/opt/boost/stage/lib -lomp -mllvm -fla -mllvm -sub -mllvm -bcf
 echo "compiled 10/10"
 
-echo "Done. A benchmark_samples_compiled directory has just been created. Check it out! "
+echo "PHASE ONE Done. A benchmark_samples_compiled directory has just been created. Check it out! "
+
+echo "PHASE TWO -------> Analyzing compiled files..."
+
+
