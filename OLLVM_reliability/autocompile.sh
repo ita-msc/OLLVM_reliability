@@ -26,7 +26,9 @@ clang++ -O0 ./benchmark_samples/spectralnorm.cpp -o ./benchmark_samples_compiled
 clang++ -O0 ./benchmark_samples/spectralnorm.cpp -o ./benchmark_samples_compiled/spectralnorm.o0.fla.sub.bcf -mllvm -fla -mllvm -bcf -mllvm -sub
 echo "compiled 5/10"
 
-cd ./benchmark_samples/BearSSL
+cd ./benchmark_samples
+git clone https://www.bearssl.org/git/BearSSL
+cd BearSSL
 make CONF=UnixClang CFLAGS='-O0 -fPIC'
 mv ./bclang/libbearssl.so ../../benchmark_samples_compiled/libbearssl.o0.so
 rm -r bclang
@@ -47,5 +49,8 @@ clang++ -I/usr/include/re2 -O0 ./benchmark_samples/regexdna.cpp -o ./benchmark_s
 clang++ -I/usr/include/re2 -O0 ./benchmark_samples/regexdna.cpp -o ./benchmark_samples_compiled/regexdna.o0.fla.sub.bcf -L/usr/include/re2 -lre2 -Xlinker -rpath=/usr/include/re2 -mllvm -fla -mllvm -sub -mllvm -bcf
 echo "compiled 9/10"
 
+clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samples_compiled/knucleotide.o0 -L/opt/boost/stage/lib -lpthread -Xlinker -rpath=/opt/boost/stage/lib -lomp
+clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samples_compiled/knucleotide.o0.fla.sub.bcf -L/opt/boost/stage/lib -lpthread -Xlinker -rpath=/opt/boost/stage/lib -lomp -mllvm -fla -mllvm -sub -mllvm -bcf
+echo "compiled 10/10"
 
 echo "Done. A benchmark_samples_compiled directory has just been created. Check it out! "
