@@ -3,8 +3,13 @@
 echo "PHASE ONE -------> Compiling..."
 
 
-mkdir benchmark_samples_compiled
-
+#[[ ! -d benchmark_samples_compiled ]] && mkdir benchmark_samples_compiled
+#[[ -d benchmark_samples_compiled ]] || mkdir benchmark_samples_compiled
+#if [[ ! -d benchmark_samples_compiled ]] ; then 
+#
+# else
+#
+#fi
 
 clang++ -O0 ./benchmark_samples/threadring.cpp -o ./benchmark_samples_compiled/threadring.o0 -pthread
 clang++ -O0 ./benchmark_samples/threadring.cpp -o ./benchmark_samples_compiled/threadring.o0.fla.sub.bcf -pthread -mllvm -fla -mllvm -sub -mllvm -bcf
