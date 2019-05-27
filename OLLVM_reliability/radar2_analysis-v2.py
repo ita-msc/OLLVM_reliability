@@ -5,6 +5,29 @@ import os
 from itertools import repeat
 import math
 
+#------------------------------------------------------------------------------------- 
+# This script will be cleverly called by the 'alllthejob.sh' script.
+# The final version of this script has been made thanks to the statistic data provided by radar2_analysis-vCSC.py
+# (radar2_analysis-vCSC.py helped to decide which SORTING CRITERION is the most relevant)
+# What it does: opens the executable (no need for the potential program parameters),
+#               analyse it and process the json output:
+#                  |    extract only the offsets, nbbs and sizes from the json output
+#                  |    sort the shortened output according to the chosen SORTING_CRITERION
+#                  |    shorten this list in size according to the chosen PERCENTAGE
+#                  |    make another list out of this previous one, with only the offsets
+#               generate .dot files and store them in a specified folder
+# ------------------------------------------------------------------------------------
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# FOR THE NEXT TIME I'LL RESUME THIS PIECE OF CODE: WHere am I? 
+# still a problem with executing the script from a folder which doesn't contain the analysed executable
+# take the if loops off because the sorting criterion will have been chosen
+# if nbbs==1, then throw the output out 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
 ################################################## USER SECTION #######################################################
 # Choose the analysis and listing commands you want to apply to the input file
 ANALYSIS_CMD        = "aa"
