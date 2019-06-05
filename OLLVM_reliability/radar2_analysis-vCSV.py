@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 import r2pipe
 import json
@@ -31,36 +32,61 @@ print("Loading and processing the json output...")
 aflj_json           = json.loads(aflj_output)
 aflj_lines_number   = len(aflj_json)
 
-columnTitleRow = "programName,calltype, realsz, diff, name, cc, indegree, nargs, difftype, edges, outdegree, cost, nlocals, offset, ebbs, nbbs, type, size, datarefs, cref_c, cref_j\n"
-parameters = ["calltype", "realsz", "diff", "name", "cc", "indegree", "nargs", "difftype", "edges", "outdegree", "nlocals", "cost", "offset", "ebbs", "nbbs", "type", "size"]
-
-for output in aflj_json:
-    row1 = str(sys.argv[1]) + ","
-    row2 = ""
-    for element in output:
-        J_count = 0
-        C_count = 0
-        if (element in parameters):
-        # just print it properly
-            row1+= str(output[element]) + ","
+columnTitleRow = "programName,calltype,realsz,diff,name,cc,indegree,nargs,difftype,edges,outdegree,cost,nlocals,offset,ebbs,nbbs,type,size,datarefsNb,cref_c,cref_j\n"
+print (columnTitleRow)
+for line in range(aflj_lines_number):
+    print(str(sys.argv[1]), end='')
+    print (",", end='')
+    print (aflj_json[line]['calltype'], end='')
+    print (",", end='')
+    print(aflj_json[line]['realsz'], end='')
+    print (",", end='')
+    print(aflj_json[line]['diff'], end='')
+    print (",", end='')
+    print(aflj_json[line]['name'], end='')
+    print (",", end='')
+    print(aflj_json[line]['cc'], end='')
+    print (",", end='')
+    print(aflj_json[line]['indegree'], end='')
+    print (",", end='')
+    print(aflj_json[line]['nargs'], end='')
+    print (",", end='')
+    print(aflj_json[line]['difftype'], end='')
+    print (",", end='')
+    print(aflj_json[line]['edges'], end='')
+    print (",", end='')
+    print(aflj_json[line]['outdegree'], end='')
+    print (",", end='')
+    print(aflj_json[line]['cost'], end='')
+    print (",", end='')
+    print(aflj_json[line]['nlocals'], end='')
+    print (",", end='')
+    print(aflj_json[line]['offset'], end='')
+    print (",", end='')
+    print(aflj_json[line]['ebbs'], end='')
+    print (",", end='')
+    print(aflj_json[line]['nbbs'], end='')
+    print (",", end='')
+    print(aflj_json[line]['type'], end='')
+    print (",", end='')
+    print(aflj_json[line]['size'], end='')
+    if 'datarefs' in aflj_json[line].keys():
+        print (",", end='')
+        print(len(aflj_json[line]['datarefs']), end='')
+    if 'callrefs' in aflj_json[line].keys():
+        print (",", end='')
+        if len(aflj_json[line]['callrefs'])== 0:
+            print(''',''')
         else:
-            if (element == "callrefs"):
-            # count the number of J and C
-                if (len(output[element]) == 0): # if there is no callref
-                    row2+= "N\A,N\A,"
-                else: # if there is at least one callref
-                    for cref in range(0, len(output[element])):
-                    # for each {type: type_value, addr: addr_value, at: at_value}
-                        if ((output[element][cref]['type']) == 'J'):
-                            J_count+=1
-                        else: 
-                            C_count+=1
-                    row2+= str(C_count) + "," + str(J_count) + ","
-            if (element == "datarefs"):
-            # count the number of elements in the datarefs list
-                if (len(output[element]) == 0): # if there is no dataref
-                    row2+= "nodataref,"
-                else:
-                    row2+=str(len(output[element])) + ","
-    print (columnTitleRow)
-    print (row1 + row2)
+            J_count = 0
+            C_count = 0
+            for elt in range(len(aflj_json[line]['callrefs'])): 
+                if aflj_json[line]['callrefs'][elt]['type'] == "C":
+                    C_count+=1
+                if aflj_json[line]['callrefs'][elt]['type'] == "J":
+                    J_count+=1
+            print (C_count, end='')
+            print(",", end='')
+            print (J_count)
+    else:
+        print('')
