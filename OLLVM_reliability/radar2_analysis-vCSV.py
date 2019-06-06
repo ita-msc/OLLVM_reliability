@@ -3,6 +3,9 @@ import sys
 import r2pipe
 import json
 import os
+from itertools import repeat
+import csv
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 # This script intends to decide, thanks to the output data it generates, which sorting criterion to use in the radar2_analysis-v2.py 
@@ -12,11 +15,13 @@ import os
 # Choose the analysis and listing commands you want to apply to the input file
 ANALYSIS_CMD        = "aa"
 LISTING_CMD         = "aflj~{}"
+SEPARATOR           = "§"
 #######################################################################################################################
 
 
 
 # opening the input executable file
+# print("Opening the input executable file")
 r2 = r2pipe.open(str(sys.argv[1])) 
 
 
@@ -28,56 +33,65 @@ aflj_output = r2.cmd(LISTING_CMD)
 
 
 # loading and processing the json output
-print("Loading and processing the json output...")
-aflj_json           = json.loads(aflj_output)
+# print("Loading and processing the json output...")
+aflj_json           = json.loads(aflj_output.decode()) #ici il faut rajouter un .decode() qqch
 aflj_lines_number   = len(aflj_json)
+# print (aflj_json)
 
-columnTitleRow = "programName,calltype,realsz,diff,name,cc,indegree,nargs,difftype,edges,outdegree,cost,nlocals,offset,ebbs,nbbs,type,size,datarefsNb,cref_c,cref_j\n"
+
+
+
+columnTitleRow = "programName" + SEPARATOR + "calltype" + SEPARATOR + "realsz" + SEPARATOR + "name"+ SEPARATOR + "cc"+ SEPARATOR + "indegree"+ SEPARATOR + "nargs"+ SEPARATOR + "edges"+ SEPARATOR + "outdegree"+ SEPARATOR + "cost"+ SEPARATOR + "nlocals"+ SEPARATOR + "offset"+ SEPARATOR + "ebbs" + SEPARATOR + "nbbs"+ SEPARATOR + "type"+ SEPARATOR + "size"+ SEPARATOR + "datarefsNb" + SEPARATOR + "cref_c" + SEPARATOR + "cref_j"+ SEPARATOR + "diff"+ SEPARATOR + "difftype"
 print (columnTitleRow)
 for line in range(aflj_lines_number):
     print(str(sys.argv[1]), end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print (aflj_json[line]['calltype'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['realsz'], end='')
-    print (",", end='')
-    print(aflj_json[line]['diff'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['name'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['cc'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['indegree'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['nargs'], end='')
-    print (",", end='')
-    print(aflj_json[line]['difftype'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['edges'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['outdegree'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['cost'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['nlocals'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['offset'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['ebbs'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['nbbs'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['type'], end='')
-    print (",", end='')
+    print (SEPARATOR, end='')
     print(aflj_json[line]['size'], end='')
+
     if 'datarefs' in aflj_json[line].keys():
-        print (",", end='')
+        print (SEPARATOR, end='')
         print(len(aflj_json[line]['datarefs']), end='')
+
+    if 'datarefs' not in aflj_json[line].keys():
+        print (SEPARATOR, end='')
+        print ("EMPTY", end='')
+
     if 'callrefs' in aflj_json[line].keys():
-        print (",", end='')
         if len(aflj_json[line]['callrefs'])== 0:
-            print(''',''')
+            print (SEPARATOR, end='')
+            print("NOCALLREF", end='')
+            print( SEPARATOR, end='')
+            print("NOCALLREF", end='')
         else:
+            print (SEPARATOR, end='')
             J_count = 0
             C_count = 0
             for elt in range(len(aflj_json[line]['callrefs'])): 
@@ -86,7 +100,27 @@ for line in range(aflj_lines_number):
                 if aflj_json[line]['callrefs'][elt]['type'] == "J":
                     J_count+=1
             print (C_count, end='')
-            print(",", end='')
-            print (J_count)
+            print(SEPARATOR, end='')
+            print (J_count, end='')
+    
+    if 'callrefs' not in aflj_json[line].keys():
+        print (SEPARATOR, end='')
+        print ("NOCALLREF", end='')
+        print( SEPARATOR, end='')
+        print("NOCALLREF", end='')
+
+    if 'diff' in aflj_json[line].keys():
+        print (SEPARATOR, end='')
+        print(aflj_json[line]['diff'], end='')
+
+    if 'diff' not in aflj_json[line].keys():
+        print (SEPARATOR, end='')
+        print (" ", end='')
+
+    if 'difftype' in aflj_json[line].keys():
+        print (SEPARATOR, end='')
+        print(aflj_json[line]['difftype'])
+ 
     else:
-        print('')
+        print(" ")
+   
