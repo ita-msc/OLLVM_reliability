@@ -63,3 +63,8 @@ echo "PHASE ONE Done. A benchmark_samples_compiled directory has just been creat
 echo "PHASE TWO -------> Analyzing compiled files..."
 
 
+# for f in $(find . -name "*.o0*" -executable | grep "bmg_") # changer le bmg machin
+# do
+#   echo $f
+#   python3 bmg_meteor/minitest.py $f >> bmg_radare2_data_MINITEST.csv
+# done
