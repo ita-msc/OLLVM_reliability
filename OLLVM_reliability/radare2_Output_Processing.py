@@ -15,7 +15,7 @@ import json
 # Choose the analysis and listing commands you want to apply to the input file
 ANALYSIS_CMD        = "aa"
 LISTING_CMD         = "aflj~{}"     # does'nt work with another non json formatted command for the moment
-SEPARATOR           = "§"           # don't use "," or "/"
+SEPARATOR           = "!"           # don't use "," or "/"
 #######################################################################################################################
 
 
@@ -99,4 +99,3 @@ for line in range(radare2_output_lines_number):       # for each line in the jso
  
     else:
         print(" ")
-   
