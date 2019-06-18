@@ -5,7 +5,7 @@ import os
 from itertools import repeat
 import math
 
-#------------------------------------------------------------------------------------- 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # This script will be cleverly called by the 'alllthejob.sh' script.
 # The final version of this script has been made thanks to the statistic data provided by radar2_analysis-vCSC.py
 # (radar2_analysis-vCSC.py helped to decide which SORTING CRITERION is the most relevant)
@@ -15,15 +15,16 @@ import math
 #                  |    sort the shortened output according to the chosen SORTING_CRITERION
 #                  |    shorten this list in size according to the chosen PERCENTAGE
 #                  |    make another list out of this previous one, with only the offsets
-#               generate .dot files and store them in a specified folder
-# ------------------------------------------------------------------------------------
+#               generate .dot files from the offsets list and store them in a specified folder
+# The .dot files will be then used for the scoring phase.
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # FOR THE NEXT TIME I'LL RESUME THIS PIECE OF CODE: WHere am I? 
 # still a problem with executing the script from a folder which doesn't contain the analysed executable
 # take the if loops off because the sorting criterion will have been chosen
 # if nbbs==1, then throw the output out 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 

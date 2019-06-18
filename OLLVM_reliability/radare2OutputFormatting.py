@@ -4,15 +4,30 @@ import r2pipe
 import json
 
 
-# ------------------------------------------------------------------------------------------------------------------------------------
-# This script intends to decide, thanks to the output data it generates, which sorting criterion to use in the radar2_analysis-v2.py 
-# ------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# This script intends to determine, thanks to the output data it generates, the most significant features to use in the radare2Analysis_&_OutputSkimming.py and then scoring.py scripts.
+# The output data generated is a csv formatted file providing, for the program specified in the parameter, the list of the functions called by it and their features (size, cost, calltype, nargs,
+# nargs, etc)
+#
+# PROTOCOL:
+# To run this program the command line is : python3 radare2_Output_Processing.py [executable file]
+# Thanks to a 'for' loop written in bash, we ran this "json-to-csv-converter" script for each benchmarcksgame program (C, C++).
+# The benchmarksgames programs used for this features analysis can be found at: https://github.com/ita-msc/OLLVM_reliability/tree/master/OLLVM_reliability/benchmark_samples
+# 
+# RESULT of the csv file analysis:
+# Some features turn out to be relevant for both the "skimming phase" and the scoring phase.
+# Indeed, in an effort to have the least bias in the final score, we set up a "skimming phase" before the scoring one. [see radare2Analysis_&_OutputSkimming.py]
+# The relevant features seem to be, for a function called by the input program: size, nbbs, the number of jumps (cref_J), datarefsNb, the ratios size/nbbs and cref_J/nbbs .
+# In fact, these selected characteristics could be good indicators when assessing whether and to what extent a program is obscured.  
+# In short, the more a program is obfuscated, the more nbbs (number of basic blocs) it has, so the bigger it sould be. The number of jumps is also important as the obfuscation impacts the
+# workflow of a program.
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 ################################################## USER SECTION #######################################################
-# Choose the analysis and listing commands you want to apply to the input file
+# Choose the analysis and listing commands you want to apply to the input file (NO NEED TO CHANGE THESE)
 ANALYSIS_CMD        = "aa"
 LISTING_CMD         = "aflj~{}"     # does'nt work with another non json formatted command for the moment
 SEPARATOR           = "!"           # don't use "," or "/"
