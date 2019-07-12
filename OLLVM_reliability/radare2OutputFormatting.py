@@ -42,6 +42,7 @@ r2 = r2pipe.open(str(sys.argv[1]))
 
 
 
+
 # basic analysis and listing the functions commands
 r2.cmd(ANALYSIS_CMD)
 radare2_output = r2.cmd(LISTING_CMD)
