@@ -60,7 +60,9 @@ clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samp
 clang++ -I/opt/boost -O0 ./benchmark_samples/knucleotide.cpp -o ./benchmark_samples_compiled/knucleotide.o0.fla.sub.bcf -L/opt/boost/stage/lib -lpthread -Xlinker -rpath=/opt/boost/stage/lib -lomp -mllvm -fla -mllvm -sub -mllvm -bcf
 echo "compiling 10/10"
 
+
 echo "PHASE ONE Done. A benchmark_samples_compiled directory has just been created. Check it out! "
+
 
 echo "PHASE TWO -------> Analyzing compiled files..."
 
@@ -70,3 +72,15 @@ echo "PHASE TWO -------> Analyzing compiled files..."
 #   echo $f
 #   python3 bmg_meteor/minitest.py $f >> bmg_radare2_data_MINITEST.csv
 # done
+
+
+for f in ./benchmark_samples_compiled/*.o0*
+do
+    echo $f
+    python3 radare2Analysis_Filtering_and_Scoring.py $f >> ScoringResults.csv #peut etre mettre le nom de la version de ollvm dans le nom du fichier resultat
+done
+
+
+echo "PHASE THREE -------> Calculating the final average score..."
+# appel du fichier python qui va faire sortir le res final, moyennne des scores qui apparaissent dans le csv
+echo " Check the ScoringResults.csv file to see the details."
