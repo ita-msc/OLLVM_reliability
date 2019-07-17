@@ -74,6 +74,8 @@ echo "PHASE TWO -------> Analyzing compiled files..."
 # done
 
 
+# faire une boucle if pour créer le nom du fichier détail des scores genre ScoringDetails_7.0.1.csv, si y a pas 
+echo "Program name,Score" > ScoringResults.csv
 for f in ./benchmark_samples_compiled/*.o0*
 do
     echo $f
@@ -83,4 +85,5 @@ done
 
 echo "PHASE THREE -------> Calculating the final average score..."
 # appel du fichier python qui va faire sortir le res final, moyennne des scores qui apparaissent dans le csv
+# envoyer le fichier qui vient d'être crée en paramètre pour le fichier python de scoring
 echo " Check the ScoringResults.csv file to see the details."
