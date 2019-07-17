@@ -86,4 +86,7 @@ done
 echo "PHASE THREE -------> Calculating the final average score..."
 # appel du fichier python qui va faire sortir le res final, moyennne des scores qui apparaissent dans le csv
 # envoyer le fichier qui vient d'être crée en paramètre pour le fichier python de scoring
+
+python3 scoring.py ScoringResults.csv >> ScoringResults.csv
+
 echo " Check the ScoringResults.csv file to see the details."
