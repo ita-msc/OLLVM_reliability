@@ -2,6 +2,17 @@
 import sys 
 import csv
 
+"""
+    input:  scoringresults_[ollvm_version]_i.csv
+    output: scoringresults_[ollvm_version]_i.csv
+
+    The input file gathers the scores of each programs, either they are obfuscated or not.
+
+    This script calculates the average score for both the obfuscated and non-obfuscated programs.
+    It adds a obfuscated average score and a non-obfucated average score at the end of the csv file.
+"""
+
+
 # Scores initialization:
 obfuscated_score = 0.0
 non_obfuscated_score = 0.0
@@ -27,3 +38,5 @@ non_obfuscated_score = non_obfuscated_score/(size/2)
 csv_writer = csv.writer(open(str(sys.argv[1]),mode='a'), delimiter=',')
 csv_writer.writerow(["Obfuscated final score", str(obfuscated_score)])
 csv_writer.writerow(["Non obfuscated final score", str(non_obfuscated_score)])
+
+
