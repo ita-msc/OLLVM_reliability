@@ -55,6 +55,7 @@ You can run the following command to find out the current version of clang:
 which clang
 ```
 <br/>
+
 After cloning the _OLLVM_reliability_ project, the only command you need to run is:
 ```bash
 bash allthejob.bash
@@ -74,5 +75,6 @@ The expected output should look like:
 
 
 <br/>
+
 ### Contributors:
 Anaïs NALEM, 4th-year student at INSA Centre Val de Loire contributed from April to July 2019
