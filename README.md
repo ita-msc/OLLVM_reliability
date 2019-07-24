@@ -47,7 +47,17 @@ The other programs in the /OLLVM_reliability folder represent the track of the w
 * __```performanceAnalysis.py```:__ is a script ready to welcome an implementation of a performance indicator that will help the OLLVM developpers understand the effects of obfuscation on the performance of a program.
 <br/>
 
-### How to test _OLLVM_reliability_:
+### How to use _OLLVM_reliability_:
+
+#### Prerequisite
+
+At least install libre2 :
+```bash
+sudo apt install libre2
+```
+
+#### Use it
+
 The main prerequisite to make this project work and be able to use it is having a version of OLLVM installed. 
 You also have to make sure that the version used during the compiling phase is not the default one but the one you previously installed.
 You can run the following command to find out the current version of clang:
