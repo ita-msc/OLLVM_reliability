@@ -59,6 +59,17 @@ As well, r2pipe module is needed for the scripts:
 ```bash
 pip3 install r2pipe
 ```
+At last, boost need to be installed whithin  /opt/boost directory :
+```bash
+cd /opt && \
+wget http://downloads.sourceforge.net/project/boost/boost/1.66.0/boost_1_66_0.tar.bz2 &&\
+tar xf boost_1_66_0.tar.bz2 && \
+rm -rf boost_1_66_0.tar.bz2 && \
+mv boost_1_66_0 boost && \
+cd /opt/boost && \
+./bootstrap.sh && \
+./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization stage
+```
 
 #### Use it
 
