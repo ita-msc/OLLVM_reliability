@@ -47,7 +47,32 @@ The other programs in the /OLLVM_reliability folder represent the track of the w
 * __```performanceAnalysis.py```:__ is a script ready to welcome an implementation of a performance indicator that will help the OLLVM developpers understand the effects of obfuscation on the performance of a program.
 <br/>
 
-### How to test _OLLVM_reliability_:
+### How to use _OLLVM_reliability_:
+
+#### Prerequisite
+
+Few dependencies are needed in order to comile the samples :
+```bash
+sudo apt -y install python3 python3-pip libre2-dev libomp-dev libgmp-dev libgmp3-dev radare2
+```
+As well, r2pipe module is needed for the scripts:
+```bash
+pip3 install r2pipe
+```
+At last, boost need to be installed whithin  /opt/boost directory :
+```bash
+cd /opt && \
+wget http://downloads.sourceforge.net/project/boost/boost/1.66.0/boost_1_66_0.tar.bz2 &&\
+tar xf boost_1_66_0.tar.bz2 && \
+rm -rf boost_1_66_0.tar.bz2 && \
+mv boost_1_66_0 boost && \
+cd /opt/boost && \
+./bootstrap.sh && \
+./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization stage
+```
+
+#### Use it
+
 The main prerequisite to make this project work and be able to use it is having a version of OLLVM installed. 
 You also have to make sure that the version used during the compiling phase is not the default one but the one you previously installed.
 You can run the following command to find out the current version of clang:
