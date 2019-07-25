@@ -2,6 +2,7 @@
 
 ollvm_version="7.0.1" # get it from the .gitlab file or smth like this
 
+set -e
 
 #  Name the scoring details file with the tested ollvm-version
 if [ -z "$ollvm_version" ];
@@ -14,13 +15,11 @@ if ! [ -z "$ollvm_version" ];
         scoringdetails="scoringdetails_${ollvm_version}"
     fi
 
-
-
-
+rm -rf ./benchmark_samples_compiled ./scoringresults_${ollvm_version} ./benchmark_samples/BearSSL
 
 #   As obfuscation brings incertitude to the code, and thus offers variations in the score of a same program,
 #   we run the ollvm assessment protocole many times to then calculate an average of the obtained scores.
-for i in {1..20} # you can change the number of iterations here!!
+for i in {1..3} # you can change the number of iterations here!!
 do 
     mkdir ./benchmark_samples_compiled/
     mkdir -p ./scoringresults_${ollvm_version}/
@@ -96,8 +95,7 @@ do
 
     python3 scoring.py ./scoringresults_${ollvm_version}/${scoringdetails}-${i}.csv >> ./scoringresults_${ollvm_version}/${scoringdetails}-${i}.csv
 
-    rm -rf ./benchmark_samples_compiled
-
+    rm -rf ./benchmark_samples_compiled ./benchmark_samples/BearSSL
 done
 
 

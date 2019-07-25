@@ -22,7 +22,7 @@ radare2_output = r2.cmd(LISTING_CMD)
 
 
 # loading the json output
-radare2_output_json           = json.loads(radare2_output.decode("utf-8")) 
+radare2_output_json           = json.loads(radare2_output) 
 radare2_output_lines_number   = len(radare2_output_json)
 
 
