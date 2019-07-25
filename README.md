@@ -51,9 +51,13 @@ The other programs in the /OLLVM_reliability folder represent the track of the w
 
 #### Prerequisite
 
-At least install libre2 :
+Few dependencies are needed in order to comile the samples :
 ```bash
-sudo apt install libre2
+sudo apt -y install python3 python3-pip libre2-dev libomp-dev libgmp-dev libgmp3-dev radare2
+```
+As well, r2pipe module is needed for the scripts:
+```bash
+pip3 install r2pipe
 ```
 
 #### Use it
